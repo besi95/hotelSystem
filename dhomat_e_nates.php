@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: index.html');
+    header('Location: index.php');
 }
 include 'app/config.php';
 
@@ -21,6 +21,7 @@ $dhomat = $conn->query($merrDhomatSQl);
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dhomat e Nates</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="vendor/bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

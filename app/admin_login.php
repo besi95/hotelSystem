@@ -21,7 +21,7 @@ if ($isAuthenticated == 1) {
 
 } else {
 
-    header('location: ../index.html');
+    header('location: ../index.php');
 }
 
 function authenticateAdmin($username, $password, $conn)

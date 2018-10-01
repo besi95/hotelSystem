@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['admin_logged_in'])) {
+header('Location: menaxhimi_dhomave.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,24 +66,5 @@
 			</div>
 		</div>
 	</div>
-
-	
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/jquery/jquery-3.2.1.min.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/animsition/js/animsition.min.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/bootstrap/js/popper.js"></script>-->
-	<!--<script src="vendor/bootstrap/js/bootstrap.min.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/select2/select2.min.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/daterangepicker/moment.min.js"></script>-->
-	<!--<script src="vendor/daterangepicker/daterangepicker.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="vendor/countdowntime/countdowntime.js"></script>-->
-<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
-	<!--<script src="js/main.js"></script>-->
-
 </body>
 </html>
