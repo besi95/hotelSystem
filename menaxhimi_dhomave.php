@@ -38,6 +38,8 @@ $dhomat = $conn->query($merrDhomatSQl);
     <!-- /#sidebar-wrapper -->
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <a href="#menu-toggle" style="font-size: 20px;" class="menu-toggle"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+        <a href="#menu-toggle" style="display: none;font-size: 20px;" class="menu-toggle"><span class="glyphicon glyphicon-circle-arrow-right"</span></a>
         <div class="container-fluid">
             <h1>Dhomat e Dites</h1>
             <div class="row">
@@ -218,6 +220,16 @@ $dhomat = $conn->query($merrDhomatSQl);
     var $ = jQuery.noConflict();
     $( document ).ready(function() {
         $("a.disabled").removeAttr("href");
+    });
+</script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $(".menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $(".menu-toggle:nth-child(1)").toggle();
+        $(".menu-toggle:nth-child(2)").toggle();
     });
 </script>
 </html>

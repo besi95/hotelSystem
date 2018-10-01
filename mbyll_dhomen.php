@@ -51,6 +51,8 @@ $dhoma = $dhoma->fetch_assoc();
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <a href="#menu-toggle" style="font-size: 20px;" class="menu-toggle"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+        <a href="#menu-toggle" style="display: none;font-size: 20px;" class="menu-toggle"><span class="glyphicon glyphicon-circle-arrow-right"</span></a>
         <div class="container-fluid" id="mbyll-dhomen-fature">
             Website: <a href="https://hotelarberia.com">https://hotelarberia.com</a>
             <p><?php echo "Data: ".date('Y-m-d')?></p>
@@ -99,6 +101,15 @@ $dhoma = $dhoma->fetch_assoc();
         return true;
     }
 </script>
+<!-- Menu Toggle Script -->
+<script>
+    $(".menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $(".menu-toggle:nth-child(1)").toggle();
+        $(".menu-toggle:nth-child(2)").toggle();
+    });
+</script>
 
 </html>
 
@@ -111,6 +122,7 @@ function llogaritTotalin($oraHyrjes, $oraDaljes, $totaliPijeve,$cmimiDhomesOre)
      * rrumbullakos ne ore
      */
     $oretEqendrimit = ceil(abs($oraDaljes - $oraHyrjes) / 3600);
+
     $cmimiDhomes = $oretEqendrimit * $cmimiDhomesOre;
     $totaliDhomes = $cmimiDhomes + $totaliPijeve;
     return $totaliDhomes;

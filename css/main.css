@@ -211,7 +211,7 @@ iframe {
 }
 
 .login100-form-logo {
-  font-size: 60px; 
+  font-size: 28px;
   color: #333333;
 
   display: -webkit-box;
@@ -545,6 +545,12 @@ iframe {
     opacity: 1;
   }
 }
+.arberia-name::before {
+  content: 'Arberia';
+  color: darkmagenta;
+}
 
-
+.menu-toggle{
+  color: #c8953d;
+}
 

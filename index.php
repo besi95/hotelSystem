@@ -40,7 +40,7 @@ header('Location: menaxhimi_dhomave.php');
 			<div class="wrap-login100">
 				<form action="app/admin_login.php" method="post" class="login100-form validate-form">
 					<span class="login100-form-logo">
-						<i class="zmdi zmdi-hotel"></i>
+						<i class="zmdi arberia-name"></i>
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
