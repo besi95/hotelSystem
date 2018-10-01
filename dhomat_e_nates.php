@@ -1,11 +1,14 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: index.html');
 }
 include 'app/config.php';
 
-$merrDhomatSQl = "SELECT * FROM rezervimet";
+$merrDhomatSQl = "SELECT * FROM dhomat_e_nates";
 $dhomat = $conn->query($merrDhomatSQl);
 
 
@@ -17,7 +20,7 @@ $dhomat = $conn->query($merrDhomatSQl);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dhomat e Dites</title>
+    <title>Dhomat e Nates</title>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="vendor/bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -29,8 +32,8 @@ $dhomat = $conn->query($merrDhomatSQl);
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand"><a href="#">Hotel Arberia</a></li>
-            <li><a class="menu-active" href="menaxhimi_dhomave.php">Dhomat e Dites</a></li>
-            <li><a href="dhomat_e_nates.php">Dhomat e Nates</a></li>
+            <li><a href="menaxhimi_dhomave.php">Dhomat e Dites</a></li>
+            <li><a class="menu-active" href="dhomat_e_nates.php">Dhomat e Nates</a></li>
             <li><a href="app/logout.php">Dil</a></li>
         </ul>
     </div>
@@ -38,7 +41,7 @@ $dhomat = $conn->query($merrDhomatSQl);
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <h1>Dhomat e Dites</h1>
+            <h1>Dhomat e Nates</h1>
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -53,14 +56,14 @@ $dhomat = $conn->query($merrDhomatSQl);
                             <th>Pijet</th>
                             <th>Totali Pijeve</th>
                             <th>Ora Hyrjes</th>
-                            <th>Cmimi Dhomes (/ore)</th>
+                            <th>Cmimi Dhomes (/nate)</th>
                             <th>Statusi</th>
                             <th>Modifiko</th>
                             <th>Mbyll</th>
                             </thead>
                             <tbody>
                             <?php while ($dhoma = $dhomat->fetch_assoc()) {
-                                $statusi = $dhoma['dhoma_status']; ?>
+                                $statusi = $dhoma['statusi']; ?>
 
                                 <tr>
                                     <td id="id-room-<?php echo $dhoma['dhoma_id']?>" style="text-align: center;font-weight: bold"><?php echo $dhoma['dhoma_id'] ?></td>
@@ -82,16 +85,16 @@ $dhomat = $conn->query($merrDhomatSQl);
                                         } else {
                                             echo $dhoma['pijet'];
                                         } ?></td>
-                                    <td id="cmimi-pijet-room-<?php echo $dhoma['dhoma_id']?>"><?php echo $dhoma['dhoma_cmimi_pijeve'] ?></td>
+                                    <td id="cmimi-pijet-room-<?php echo $dhoma['dhoma_id']?>"><?php echo $dhoma['cmimi_pijeve'] ?></td>
                                     <td id="ora-hyrjes-room-<?php echo $dhoma['dhoma_id']?>">
                                         <?php if ($statusi == 0) {
-                                            echo $dhoma['ora_hyrjes'];
+                                            echo $dhoma['hyrja'];
                                         } else { ?>
                                             <?php
                                             echo '---';
                                         } ?>
                                     </td>
-                                    <td id="cmimi-room-<?php echo $dhoma['dhoma_id']?>"><?php echo $dhoma['dhoma_cmimi'] ?></td>
+                                    <td id="cmimi-room-<?php echo $dhoma['dhoma_id']?>"><?php echo $dhoma['cmimi_dhomes'] ?></td>
                                     <td id="status-room-<?php echo $dhoma['dhoma_id']?>">
                                         <?php if ($statusi == 1) { ?>
                                             <span data-value="<?php echo $statusi?>" class="label label-success">E Lire</span>
@@ -109,9 +112,9 @@ $dhomat = $conn->query($merrDhomatSQl);
                                     <td>
                                         <p data-placement="top">
 
-                                            <a class="<?php echo $statusi =='0'?'':'disabled'?>" href="<?php echo 'mbyll_dhomen.php?rezId=' . $dhoma['rezervim_id'] ?>">
+                                            <a class="<?php echo $statusi =='0'?'':'disabled'?>" href="<?php echo 'mbyll_dhomen_e_nates.php?rezId=' . $dhoma['dhoma_id'] ?>">
                                                 <button class="btn btn-danger btn-xs <?php echo $statusi =='0'?'':'disabled'?>"><span
-                                                            class="glyphicon glyphicon-lock"></span>
+                                                        class="glyphicon glyphicon-lock"></span>
                                                 </button>
                                             </a>
                                         </p>
@@ -132,10 +135,10 @@ $dhomat = $conn->query($merrDhomatSQl);
                 <div class="modal-content" style="overflow-y: auto;height: 600px">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                                    class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                         <h4 class="titull-edito-dhomen modal-title custom_align" id="Heading">Edito Detajet e Dhomes:</h4>
                     </div>
-                    <form method="post" action="app/rezervoDhomen.php">
+                    <form method="post" action="app/rezervoDhomenNate.php">
                         <div class="modal-body forma-editimit">
                             <div class="form-group">
                                 Dhoma #:<input id="dhoma_nr" name="dhoma_nr" class="form-control" type="text" readonly/>
@@ -170,7 +173,7 @@ $dhomat = $conn->query($merrDhomatSQl);
                         </div>
                         <div class="modal-footer ">
                             <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span
-                                        class="glyphicon glyphicon-ok-sign"></span> Ruaj
+                                    class="glyphicon glyphicon-ok-sign"></span> Ruaj
                             </button>
                         </div>
                     </form>

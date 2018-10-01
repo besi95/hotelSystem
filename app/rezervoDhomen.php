@@ -10,7 +10,7 @@ $statusDhome = $_POST['status_dhome'];
 $pijetDhome = $conn->real_escape_string($_POST['pijet']);
 $cmimiDhomes = doubleval($_POST['cmimi_dhomes']);
 $cmimiPijeveDhome = doubleval($conn->real_escape_string($_POST['totali_pijeve']));
-$oraAktuale = date('H:i:s');
+$oraAktuale = date('Y-m-d H:i:s');
 
 
 /**
